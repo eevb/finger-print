@@ -1,3 +1,40 @@
+// Get the domain name from the current URL
+const domainName = window.location.origin;
+
+// Generate a random hexadecimal string
+function generateRandomHex(length) {
+  let result = '';
+  const characters = '0123456789abcdef';
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return result;
+}
+
+// Replace numbers and letters with random hexadecimal values every 100 milliseconds
+const intervalId = setInterval(() => {
+  const hexValue = generateRandomHex(40);
+  const newURL = `${domainName}/${hexValue}`;
+  window.history.pushState({}, document.title, newURL);
+  document.getElementById("FPsum").textContent = hexValue;
+}, 100);
+
+// Clear the URL and HTML element after 2 seconds
+setTimeout(() => {
+  clearInterval(intervalId);
+  window.history.pushState({}, document.title, domainName);
+  document.getElementById("FPsum").textContent = "";
+}, 2000);
+
+
+
+//----------------------------------------------------------------
+
+// Delayed script
+function delayedScript() {
+
+
+
 async function calculateBrowserFingerprint() {
   // User Agent
   const userAgent = navigator.userAgent;
@@ -49,6 +86,12 @@ async function calculateBrowserFingerprint() {
 // Calculate and print the hashed browser fingerprint
 calculateBrowserFingerprint().then(hash => {
   console.log(hash);
-  const fingerprintElement = document.getElementById('FMsum');
-  fingerprintElement.textContent = 'Your browser fingerprint is ' + hash;
+  const fingerprintElement = document.getElementById('FPsum');
+  fingerprintElement.textContent = hash;
 });
+
+
+}
+
+// Delay the execution of the script by 2 seconds
+setTimeout(delayedScript, 2000);
