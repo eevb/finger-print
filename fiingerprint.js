@@ -1,3 +1,5 @@
+function generate(){
+
 // Get the domain name from the current URL
 const domainName = window.location.origin;
 
@@ -102,3 +104,17 @@ function delayedScript() {
 
 // Delay the execution of the script by 2 seconds
 setTimeout(delayedScript, 2000);
+
+
+}
+
+
+var button = document.getElementById("myButton");
+
+        // Function to hide the button
+        function hideButton() {
+            button.classList.add("hidden");
+        }
+
+        // Call the hideButton function when the button is clicked
+        button.addEventListener("click", hideButton);

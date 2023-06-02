@@ -5,3 +5,8 @@ body {
   span > *{
     display: inline;
   }
+
+
+  .hidden{
+    display: none;
+  }
